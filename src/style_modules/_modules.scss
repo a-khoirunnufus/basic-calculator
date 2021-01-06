@@ -1,0 +1,85 @@
+// buttons
+.btn {
+	width: 50px;
+  height: 50px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+  span {
+  	font-size: 24px;
+  }
+  &:active {
+    box-shadow: inset 0px 10px 10px rgba(0, 0, 0, .25);
+  }
+}
+.btn--number {
+	background-color: #FFFFFF;
+	&:hover {
+		background-color: #E0E0E0;
+	}
+}
+.btn--operator {
+	background-color: #BDBDBD;
+	&:hover {
+		background-color: #ACACAC;
+	}
+}
+.btn--count {
+	background-color: #2F80ED;
+	span {
+		color: #FFFFFF;
+	}
+	&:hover {
+		background-color: #3B7ACE;
+	}
+}
+.btn--history {
+	background-color: #FFFFFF;
+	&:hover {
+		background-color: #E0E0E0;
+	}
+}
+
+// screen
+.screen {
+	height: 50px;
+	width: 178px;
+	padding: 9px 17px;
+	text-align: right;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	span {
+  	font-size: 24px;
+  }
+}
+
+// surface
+.surface {
+	background-color: #E5E5E5;
+	padding: 24px;
+	border-radius: 10px;
+	display: inline-flex;
+	flex-direction: column;
+}
+
+// row
+.row {
+	display: flex;
+	flex-direction: row;
+}
+.row--calc-btn {
+	* {
+		&:not(:nth-child(1)) {
+			margin-left: 14px;
+		}
+	}
+}
+
+// add margins
+.ml {
+	margin-left: 14px;
+}
+.mb {
+	margin-bottom: 14px;
+}
