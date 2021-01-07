@@ -7,7 +7,7 @@ export default function OperatortBtn(props) {
 	};
 
 	return (
-		<button className="btn btn--operator" onClick={ () => handleClick() }>
+		<button id={props.id} className="btn btn--operator" onClick={ () => handleClick() }>
 			<span>{props.opr}</span>
 		</button>
 	);

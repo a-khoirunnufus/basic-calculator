@@ -1,13 +1,13 @@
 import React from 'react';
 
-export default function CountBtn() {
+export default function CountBtn(props) {
 	const handleClick = () => {
 		console.log('count button pressed!');
 		document.activeElement.blur();
 	};
 
 	return (
-		<button className="btn btn--count" onClick={ () => handleClick() }>
+		<button id={props.id} className="btn btn--count" onClick={ () => handleClick() }>
 			<span>=</span>
 		</button>
 	);

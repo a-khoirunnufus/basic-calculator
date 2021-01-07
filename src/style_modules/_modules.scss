@@ -10,35 +10,48 @@
   	font-size: 24px;
   }
   &:active {
-    box-shadow: inset 0px 10px 10px rgba(0, 0, 0, .25);
+    box-shadow: inset 0px 10px 10px $button-shadow;
   }
 }
 .btn--number {
-	background-color: #FFFFFF;
-	&:hover {
-		background-color: #E0E0E0;
-	}
+	@include btn-square($white, $white-hover);
 }
 .btn--operator {
-	background-color: #BDBDBD;
-	&:hover {
-		background-color: #ACACAC;
-	}
+	@include btn-square($grey, $grey-hover);
 }
 .btn--count {
-	background-color: #2F80ED;
-	span {
-		color: #FFFFFF;
-	}
-	&:hover {
-		background-color: #3B7ACE;
-	}
+	@include btn-square($primary, $primary-hover);
+	color: #fff;
 }
 .btn--history {
-	background-color: #FFFFFF;
-	&:hover {
-		background-color: #E0E0E0;
-	}
+	@include btn-square($white, $white-hover);
+}
+
+.btn-round {
+	width: 30px;
+  height: 30px;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  cursor: pointer;
+  &--red {
+  	@include btn-round($red, $red-hover);
+  }
+  &--orange {
+  	@include btn-round($orange, $orange-hover);
+  }
+  &--green {
+  	@include btn-round($green, $green-hover);
+  }
+  &--blue {
+  	@include btn-round($blue, $blue-hover);
+  }
+  &--dark {
+  	@include btn-round($dark, $dark-hover);
+  }
+  &--outlined {
+  	border: solid 3px $outline-color; 
+  }
 }
 
 // screen
@@ -54,12 +67,55 @@
   }
 }
 
+// history
+.history-screen {
+	width: 242px;
+	background-color: #FFFFFF;
+	border-radius: 10px;
+	padding: 12px 17px;
+	text-align: right;
+	span {
+		display: block;
+		margin-bottom: 9px;
+  	font-size: 18px;
+  }
+}
+
+.scrollbar--horizontal {
+	width: auto;
+	background-color: #BDBDBD;
+	height: 10px;
+	border-radius: 5px;
+	&:hover {
+		background-color: #ACACAC;
+	}
+}
+
+// color changer
+.color-changer {
+	position: absolute;
+	left: 24px;
+	top: 24px;
+	display: flex;
+	flex-direction: row;
+	button:not(:nth-child(1)) {
+		margin-left: 1rem;
+	}
+
+}
+
 // surface
 .surface {
 	background-color: #E5E5E5;
 	padding: 24px;
 	border-radius: 10px;
 	display: inline-flex;
+	flex-direction: column;
+}
+
+// col
+.col {
+	display: flex;
 	flex-direction: column;
 }
 

@@ -1,0 +1,28 @@
+.content {
+	width: 290px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.footer {
+	position: absolute;
+	bottom: 24px;
+	right: 24px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	&--text {
+		font-size: 11px;
+		font-weight: bold;
+	}
+	&--logo {
+		width: 24px;
+		height: 24px;
+		margin-left: 1rem;
+	}
+	&--link {
+		text-decoration: none;
+	}
+}

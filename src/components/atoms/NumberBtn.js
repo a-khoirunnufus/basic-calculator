@@ -7,7 +7,7 @@ export default function NumberBtn(props) {
 	};
 
 	return (
-		<button className="btn btn--number" onClick={ () => handleClick() }>
+		<button id={props.id} className="btn btn--number" onClick={ () => handleClick() }>
 			<span>{props.number}</span>
 		</button>
 	);

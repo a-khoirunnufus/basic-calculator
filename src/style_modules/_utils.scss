@@ -1,4 +1,16 @@
-.row {
-	display: flex;
-	flex-direction: row;
+@mixin btn-round($color, $color-hover) {
+	background-color: $color;
+	&:hover {
+		background-color: $color-hover;
+	}
+  &:active {
+    box-shadow: inset 0px 10px 10px $button-shadow;
+  }
+}
+
+@mixin btn-square($color, $color-hover) {
+	background-color: $color;
+	&:hover {
+		background-color: $color-hover;
+	}
 }
