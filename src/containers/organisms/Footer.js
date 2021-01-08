@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import githubLogo from '../../assets/logos/github_logo.png';
 
 export default function Footer() {

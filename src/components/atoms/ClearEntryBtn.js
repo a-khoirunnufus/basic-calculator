@@ -1,14 +1,14 @@
 import React from 'react';
 
-export default function NumberBtn({id, number, handleInput}) {
+export default function ClearEntryBtn({ id, handleCE }) {
 	const handleClick = () => {
-		handleInput(number);
+		handleCE();
 		document.activeElement.blur();
 	};
 
 	return (
 		<button id={id} className="btn btn--number" onClick={ () => handleClick() }>
-			<span>{number}</span>
+			<span>CE</span>
 		</button>
 	);
 }

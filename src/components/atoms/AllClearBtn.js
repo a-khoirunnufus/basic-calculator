@@ -1,14 +1,14 @@
 import React from 'react';
 
-export default function NumberBtn({id, number, handleInput}) {
+export default function AllClearBtn({ id, handleAC }) {
 	const handleClick = () => {
-		handleInput(number);
+		handleAC();
 		document.activeElement.blur();
 	};
 
 	return (
 		<button id={id} className="btn btn--number" onClick={ () => handleClick() }>
-			<span>{number}</span>
+			<span>AC</span>
 		</button>
 	);
 }

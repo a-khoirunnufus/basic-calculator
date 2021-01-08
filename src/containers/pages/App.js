@@ -1,51 +1,25 @@
-import React, { useEffect } from 'react';
-import logo from '../../assets/logo.svg';
-import KeyboardEventHandler from 'react-keyboard-event-handler';
+import React from 'react';
+import ButtonHandler from '../organisms/ButtonHandler';
 import CalculatorMain from '../organisms/CalculatorMain';
 import CalculatorHistory from '../organisms/CalculatorHistory';
 import ColorChanger from '../organisms/ColorChanger';
 import Footer from '../organisms/Footer';
+import { ContextProvider } from '../../configs/AppContext';
 
 function App() {
-  const addButtonShadowOpr = (id) => {
-    if(id === 'shift+=' || id === '+') return 'plus';
-    if(id === '-') return 'minus';
-    if(id === 'shift+8' || id === '*') return 'mlt';
-    if(id === '/') return 'div';
-    return '';
-  };
-  const addButtonShadow = (id) => {
-    let btnId = id;
-    if(['shift+=','+','-','shift+8','*','/'].includes(id)) {
-      btnId = addButtonShadowOpr(id);
-    }
-    document.querySelector(`#btn-${btnId}`).classList.add("btn-click");
-    setTimeout(() => {
-      document.querySelector(`#btn-${btnId}`).classList.remove("btn-click");
-    }, 100);
-  };
-	const handleKeyEvent = (key) => {
-		console.log(`${key} pressed!`);
-    addButtonShadow(key);
-	};
-
   return (
     <div className="App">
-      <KeyboardEventHandler
-    		handleKeys={['1','2','3','4','5','6','7','8','9','0',',','.','shift+=','+','-','shift+8','*','/','c','enter','h','r','o','g','b','d']}
-    		onKeyEvent={(key, e) => handleKeyEvent(key)} 
-      />
-
-      <ColorChanger />
-
-      <div className="content col">
-        <div className="mb">
-          <CalculatorHistory />
+      <ContextProvider>
+        <ButtonHandler />
+        <ColorChanger />
+        <div className="content col">
+          {/*<div className="mb">
+                    <CalculatorHistory />
+                  </div>*/}
+          <CalculatorMain />
         </div>
-        <CalculatorMain />
-      </div>
-
-      <Footer />
+        <Footer />
+      </ContextProvider>
     </div>
   );
 }

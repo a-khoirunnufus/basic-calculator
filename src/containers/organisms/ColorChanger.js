@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import ColorBtn from '../../components/atoms/ColorBtn';
 
 export default function ColorChanger() {

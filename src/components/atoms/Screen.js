@@ -1,9 +1,14 @@
 import React from 'react';
 
-export default function Screen() {
+export default function Screen({ value }) {
+	let string = '';
+	for ( let item of value ) {
+		string = string + item;
+	};
+
 	return (
 		<div className="screen">
-			<span>7</span>
+			<span>{string}</span>
 		</div>
 	);
 }
