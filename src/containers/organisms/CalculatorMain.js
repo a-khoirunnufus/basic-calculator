@@ -1,16 +1,30 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import NumberBtn from '../../components/atoms/NumberBtn';
 import OperatorBtn from '../../components/atoms/OperatorBtn';
 import CountBtn from '../../components/atoms/CountBtn';
 import ClearEntryBtn from '../../components/atoms/ClearEntryBtn';
 import AllClearBtn from '../../components/atoms/AllClearBtn';
-import HistoryBtn from '../../components/atoms/HistoryBtn';
 import Screen from '../../components/atoms/Screen';
 import Surface from '../../components/Surface';
 import { AppContext } from '../../configs/AppContext';
 
 export default function CalculatorMain() {
-  const { input, showResult, InputNum, InputOpr, Count, ClearEntry, AllClear } = useContext(AppContext);
+  const { 
+    input, 
+    inputString,
+    status,
+    showResult,
+    maxInput,
+    maxOutput,
+    wrongInput,
+    InputNum, 
+    InputOpr,
+    Count, 
+    ClearEntry, 
+    AllClear, 
+    MaxInput 
+  } = useContext(AppContext);
+  const [statusText, setStatusText] = useState('');
 
   const handleInputNum = value => {
     InputNum(value);
@@ -27,12 +41,32 @@ export default function CalculatorMain() {
   const handleAC = () => {
     AllClear();
   }
+  const handleMaxInput = (bool) => {
+    MaxInput(bool);
+  }
+
+  useEffect(() => {
+    if(maxInput) setStatusText(status.maxInput);
+    if(maxOutput) setStatusText(status.maxOutput);
+    if(wrongInput) setStatusText(status.wrongInput);
+    if(!(maxInput || maxOutput || wrongInput)) setStatusText('');
+  }, [maxInput, maxOutput, wrongInput])
+
+  useEffect(() => {
+    console.log('use effect jalan');
+    // input validation
+    if(inputString.length > 13) {
+      console.log('max input reached');
+      handleMaxInput(true);
+    } else {
+      handleMaxInput(false);
+    }
+  }, [inputString])
 
 	return (
 		<Surface>
       <div className="row row--calc-btn mb">
-        <HistoryBtn id="btn-h"/>
-        <Screen value={input} />
+        <Screen value={inputString} statusText={statusText} />
       </div>
       <div className="row row--calc-btn mb">
         <NumberBtn id="btn-7" number='7' handleInput={handleInputNum} />

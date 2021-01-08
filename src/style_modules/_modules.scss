@@ -34,17 +34,11 @@
   outline: none;
   border-radius: 15px;
   cursor: pointer;
-  &--red {
-  	@include btn-round($red, $red-hover);
-  }
   &--orange {
   	@include btn-round($orange, $orange-hover);
   }
   &--green {
   	@include btn-round($green, $green-hover);
-  }
-  &--blue {
-  	@include btn-round($blue, $blue-hover);
   }
   &--dark {
   	@include btn-round($dark, $dark-hover);
@@ -56,28 +50,20 @@
 
 // screen
 .screen {
-	height: 50px;
-	width: 178px;
-	padding: 9px 17px;
-	text-align: right;
-	background-color: #FFFFFF;
-	border-radius: 10px;
-	span {
-  	font-size: 24px;
-  }
-}
-
-// history
-.history-screen {
 	width: 242px;
+	height: 75px;
+	padding: 9px 17px;
 	background-color: #FFFFFF;
 	border-radius: 10px;
-	padding: 12px 17px;
+	overflow: hidden;
 	text-align: right;
-	span {
-		display: block;
-		margin-bottom: 9px;
-  	font-size: 18px;
+	&--status {
+		font-size: 14px;
+		text-transform: uppercase;
+		color: $red;
+	}
+	&--text {
+  	font-size: 24px;
   }
 }
 
@@ -94,7 +80,8 @@
 // color changer
 .color-changer {
 	position: absolute;
-	left: 24px;
+	left: 50%;
+	transform: translateX(-50%);
 	top: 24px;
 	display: flex;
 	flex-direction: row;
@@ -129,9 +116,6 @@
 		&:not(:nth-child(1)) {
 			margin-left: 14px;
 		}
-	}
-	div {
-		margin-left: 14px;
 	}
 }
 

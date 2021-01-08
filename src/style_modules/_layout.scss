@@ -9,18 +9,19 @@
 .footer {
 	position: absolute;
 	bottom: 24px;
-	right: 24px;
+	left: 50%;
+	transform: translateX(-50%);
 	display: flex;
-	flex-direction: row;
+	flex-direction: column;
 	align-items: center;
 	&--text {
+		text-align: center;
 		font-size: 11px;
 		font-weight: bold;
 	}
 	&--logo {
 		width: 24px;
 		height: 24px;
-		margin-left: 1rem;
 	}
 	&--link {
 		text-decoration: none;
