@@ -1,3 +1,8 @@
+# Project Description
+
+This is Basic Calculator App made with React.\
+Open demo [Basic Calculator](https://basic-calculator33.netlify.app).
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
