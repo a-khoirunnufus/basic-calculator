@@ -176,8 +176,7 @@ export function ContextProvider({ children }) {
 		InputOpr: value => dispatch({ type: 'INPUT_OPR', value: value }),
 		Count: value => dispatch({ type: 'COUNT', value: value }),
 		ClearEntry: () => dispatch({ type: 'CLEAR_ENTRY' }),
-		AllClear: () => dispatch({ type: 'ALL_CLEAR' }),
-		MaxInput: (value) => dispatch({ type: 'MAX_INPUT', value: value})
+		AllClear: () => dispatch({ type: 'ALL_CLEAR' })
 	}
 
 	return (

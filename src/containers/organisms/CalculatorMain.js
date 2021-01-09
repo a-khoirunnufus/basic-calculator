@@ -1,16 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import NumberBtn from '../../components/atoms/NumberBtn';
-import OperatorBtn from '../../components/atoms/OperatorBtn';
-import CountBtn from '../../components/atoms/CountBtn';
-import ClearEntryBtn from '../../components/atoms/ClearEntryBtn';
-import AllClearBtn from '../../components/atoms/AllClearBtn';
-import Screen from '../../components/atoms/Screen';
+import NumberBtn from '../../components/NumberBtn';
+import OperatorBtn from '../../components/OperatorBtn';
+import CountBtn from '../../components/CountBtn';
+import ClearEntryBtn from '../../components/ClearEntryBtn';
+import AllClearBtn from '../../components/AllClearBtn';
+import Screen from '../../components/Screen';
 import Surface from '../../components/Surface';
 import { AppContext } from '../../configs/AppContext';
 
 export default function CalculatorMain() {
-  const { 
-    input, 
+  const {
     inputString,
     status,
     showResult,
@@ -22,8 +21,7 @@ export default function CalculatorMain() {
     InputOpr,
     Count, 
     ClearEntry, 
-    AllClear, 
-    MaxInput 
+    AllClear
   } = useContext(AppContext);
   const [statusText, setStatusText] = useState('');
 
@@ -41,9 +39,6 @@ export default function CalculatorMain() {
   }
   const handleAC = () => {
     AllClear();
-  }
-  const handleMaxInput = (bool) => {
-    MaxInput(bool);
   }
 
   useEffect(() => {

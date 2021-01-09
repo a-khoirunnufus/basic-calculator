@@ -23,10 +23,6 @@ export default function ColorBtn({ id, color, handleChangeBg }) {
 		handleChangeBg(color);
 	}
 
-	// if (props.isSelected) {
-	// 	outlineClass = "btn-round--outlined";
-	// }
-
 	className = className +" "+ colorClass +" "+ outlineClass;
 
 	return (
