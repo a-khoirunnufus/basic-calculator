@@ -11,6 +11,7 @@ const initialState = {
 		maxOutput: 'max output reached',
 		wrongInput: 'wrong input'
 	},
+	operationStatus: '',
 	showResult: false,
 	maxInput: false,
 	maxOutput: false,
@@ -20,41 +21,86 @@ const initialState = {
 function reducer(state, action) {
 	let newInputArr = [];
 	let newInputString = '';
+	let newMaxInput = false;
+	let newMaxOutput = false;
+	let newWrongInput = false;
+	let newOperationStatus = '';
 	let result = 0;
+	let re = /^\d+(\s*[-*+/]\s*\d+)+$/;
 
 	switch (action.type) {
 		case 'INPUT_NUM':
 		  newInputArr = state.input;
 		  newInputArr.push(action.value);
 		  newInputString = newInputArr.join('');
+		  if (newInputString.length > 13) {
+		  	newMaxInput = true;
+		  }
 			return {
 				...state, 
 				input: newInputArr,
-				inputString: newInputString
+				inputString: newInputString,
+				maxInput: newMaxInput
 			};
 
 		case 'INPUT_OPR':
 			newInputArr = collapse(state.input);
 			newInputArr.push(action.value);
 			newInputString = newInputArr.join('');
+			if (newInputString.length > 13) {
+		  	newMaxInput = true;
+		  }
 			return {
 				...state, 
 				input: newInputArr,
-				inputString: newInputString
+				inputString: newInputString,
+				maxInput: newMaxInput
 			};
 
 		case 'COUNT':
 			newInputArr = collapse(state.input);
-			result = count(newInputArr);
-			newInputArr.push(action.value);
-			newInputArr.push(result);
+
+			// syntax validation
 			newInputString = newInputArr.join('');
-			console.log(newInputArr);
+			newWrongInput = !re.test(newInputString);
+			if (newWrongInput) {
+			  return {
+			  	...state,
+			  	input: newInputArr,
+			  	inputString: newInputString,
+			  	wrongInput: newWrongInput
+			  }
+			}
+
+			// max output validation
+			result = count(newInputArr);
+			if (result.toString().length > 14) {
+				newMaxInput = true;
+				return {
+			  	...state,
+			  	input: newInputArr,
+			  	inputString: newInputString,
+			  	wrongInput: newWrongInput,
+			  	maxOutput: newMaxInput,
+			  }
+			} else {
+				newMaxInput = false;
+			}
+
+			newInputArr.push(action.value);
+			newOperationStatus = newInputArr.join('');
+			newInputArr = [result];
+			newInputString = result.toString();
+
 			return {
 				...state,
 				input: newInputArr,
 				inputString: newInputString,
-				showResult: true
+				operationStatus: newOperationStatus,
+				showResult: true,
+				wrongInput: newWrongInput,
+				maxInput: false,
+				maxOutput: newMaxOutput
 			};
 		
 		case 'CLEAR_ENTRY':
@@ -64,7 +110,10 @@ function reducer(state, action) {
 		  return {
 				...state, 
 				input: newInputArr,
-				inputString: newInputString
+				inputString: newInputString,
+				maxInput: false,
+				maxOutput: false,
+				wrongInput: false
 			};
 
 		case 'ALL_CLEAR':
@@ -72,7 +121,11 @@ function reducer(state, action) {
 				...state,
 				input: [],
 				inputString: '',
-				showResult: false
+				showResult: false,
+				operationStatus: '',
+				maxInput: false,
+				maxOutput: false,
+				wrongInput: false
 			};
 
 		case 'MAX_INPUT':
@@ -114,6 +167,7 @@ export function ContextProvider({ children }) {
 		input: state.input,
 		inputString: state.inputString,
 		showResult: state.showResult,
+		operationStatus: state.operationStatus,
 		status: state.status,
 		maxInput: state.maxInput,
 		maxOutput: state.maxOutput,

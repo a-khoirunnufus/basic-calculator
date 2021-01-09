@@ -1,22 +1,16 @@
 import React from 'react';
 
-export default function ColorBtn(props) {
+export default function ColorBtn({ id, color, handleChangeBg }) {
 	let colorClass = "";
 	let outlineClass = "";
 	let className = "btn-round";
 
-	switch (props.color) {
-		case "red":
-			colorClass = "btn-round--red";
-			break;
+	switch (color) {
 		case "orange":
 			colorClass = "btn-round--orange";
 			break;
 		case "green":
 		  colorClass = "btn-round--green";
-			break;
-		case "blue":
-		  colorClass = "btn-round--blue";
 			break;
 		case "dark":
 		  colorClass = "btn-round--dark";
@@ -25,13 +19,17 @@ export default function ColorBtn(props) {
 			break;
 	}
 
-	if (props.isSelected) {
-		outlineClass = "btn-round--outlined";
+	const handleClick = () => {
+		handleChangeBg(color);
 	}
+
+	// if (props.isSelected) {
+	// 	outlineClass = "btn-round--outlined";
+	// }
 
 	className = className +" "+ colorClass +" "+ outlineClass;
 
 	return (
-		<button id={props.id} className={className} />
+		<button id={id} className={className} onClick={ () => handleClick() } />
 	);
 }

@@ -14,6 +14,7 @@ export default function CalculatorMain() {
     inputString,
     status,
     showResult,
+    operationStatus,
     maxInput,
     maxOutput,
     wrongInput,
@@ -27,10 +28,10 @@ export default function CalculatorMain() {
   const [statusText, setStatusText] = useState('');
 
   const handleInputNum = value => {
-    InputNum(value);
+    if (!maxInput) InputNum(value);
   };
   const handleInputOpr = value => {
-    InputOpr(value);
+    if (!maxInput) InputOpr(value);
   };
   const handleCount = value => {
     Count(value);
@@ -46,22 +47,19 @@ export default function CalculatorMain() {
   }
 
   useEffect(() => {
+    console.log('use effect jalan');
     if(maxInput) setStatusText(status.maxInput);
     if(maxOutput) setStatusText(status.maxOutput);
     if(wrongInput) setStatusText(status.wrongInput);
-    if(!(maxInput || maxOutput || wrongInput)) setStatusText('');
-  }, [maxInput, maxOutput, wrongInput])
-
-  useEffect(() => {
-    console.log('use effect jalan');
-    // input validation
-    if(inputString.length > 13) {
-      console.log('max input reached');
-      handleMaxInput(true);
+    if(!(maxInput || maxOutput || wrongInput)) {
+      document.querySelector('.screen--status').classList.remove('f-red');
+      document.querySelector('.screen--status').classList.add('f-grey');
+      setStatusText(operationStatus);
     } else {
-      handleMaxInput(false);
+      document.querySelector('.screen--status').classList.remove('f-grey');
+      document.querySelector('.screen--status').classList.add('f-red');
     }
-  }, [inputString])
+  }, [maxInput, maxOutput, wrongInput, operationStatus])
 
 	return (
 		<Surface>
